@@ -1,6 +1,6 @@
 .navbar {
   height: 70px;
-  background-color: var(--black);
+  background-color: var(--nav-body);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,6 +18,13 @@
   gap: 1rem;
   align-items: center;
 }
+
+.nav-right > a,
+.nav-left > a {
+  color: unset;
+  text-decoration: none;
+}
+
 
 .nav-right-input {
   align-items: center;
@@ -47,7 +54,7 @@
   cursor: pointer;
 }
 
-.nav-right > button {
+.nav-btn {
   background-color: var(--blue);
   color: var(--white);
   padding: 0.4rem 0.8rem;

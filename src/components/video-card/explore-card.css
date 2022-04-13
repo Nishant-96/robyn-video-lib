@@ -1,0 +1,22 @@
+.exp-card-wrapper {
+  background-color: var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.explore-card-badge {
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 5%;
+  bottom: 13%;
+}
+
+.explore-card-badge > svg {
+  font-size: 1.5rem;
+}
+
+.explore-card-badge > svg:hover {
+  color: var(--blue);
+}

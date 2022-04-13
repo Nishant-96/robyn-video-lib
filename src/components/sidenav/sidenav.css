@@ -5,13 +5,13 @@
   width: 100%;
   max-width: 6rem;
   gap: 1rem;
-  background-color: var(--black);
+  background-color: var(--nav-body);
 
-  /* position: fixed;
-  margin-top: 4.4rem;
-  top: 0;
+  position: fixed;
+  top: 9%;
   left: 0;
-  bottom: 0; */
+  bottom: 0;
+  z-index: 5;
 }
 
 .sidenav-section {
@@ -31,4 +31,22 @@
 
 .sidenav-section > p {
   font-size: 12px;
+}
+
+.sidenav > a {
+  text-decoration: none;
+  color: unset;
+}
+
+.sidenav-active {
+  background-color: var(--blue);
+}
+
+@media only screen and (max-width: 480px) {
+  .sidenav {
+    max-width: 4rem;
+  }
+  .sidenav-section > p {
+    display: none;
+  }
 }
