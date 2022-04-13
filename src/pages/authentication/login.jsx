@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./login.css";
 export function Login() {
   return (
@@ -26,11 +28,11 @@ export function Login() {
                 <input type="checkbox" />
                 Remember Me
               </label>
-              <a>Forgot Your Password ?</a>
+              <Link to="/forgot-password">Forgot Your Password ?</Link>
             </div>
             <button className="btn btn-primary auth-btn">Login</button>
             <h4>Not a member yet?</h4>
-            <a>Sign Up</a>
+            <Link to="/sign-up">Sign Up</Link>
           </div>
         </div>
         <div className="login-background"></div>
@@ -38,4 +40,3 @@ export function Login() {
     </div>
   );
 }
-

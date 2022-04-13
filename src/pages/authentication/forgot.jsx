@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./login.css";
 export function Forgot() {
   return (
@@ -21,7 +22,11 @@ export function Forgot() {
             <button className="btn btn-primary auth-btn">
               Request Password Reset
             </button>
-            <button className="btn btn-primary auth-btn">Back To Login</button>
+            <Link to="/login">
+              <button className="btn btn-primary auth-btn">
+                Back To Login
+              </button>
+            </Link>
           </div>
         </div>
         <div className="login-background"></div>
@@ -29,4 +34,3 @@ export function Forgot() {
     </div>
   );
 }
-

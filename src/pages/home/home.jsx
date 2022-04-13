@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { CategoryCard } from "../../components";
 
 import "./home.css";
@@ -10,7 +11,9 @@ export function Home() {
           <div className="home-background-title">
             <h2>Robyn Tube</h2>
             <h3>See the world of fiction come Alive</h3>
-            <button className="btn btn-primary home-btn">Watch Now</button>
+            <Link to="/explore">
+              <button className="btn btn-primary home-btn">Watch Now</button>
+            </Link>
           </div>
         </div>
 

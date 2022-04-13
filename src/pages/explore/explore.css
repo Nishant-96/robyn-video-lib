@@ -1,0 +1,41 @@
+.explore {
+  margin-top: 4.4rem;
+  margin-left: 6rem;
+  flex-basis: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+}
+
+.explore-cat-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.explore-chips {
+  font-size: 1rem;
+  color: var(--white);
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--blue);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.active-chip {
+  background-color: var(--blue);
+}
+
+.explore-listing {
+  margin-block: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .explore-cat-list {
+    gap: 1rem;
+  }
+}

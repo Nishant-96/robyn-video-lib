@@ -1,0 +1,43 @@
+.listing-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 6rem;
+}
+
+.listing-empty > div {
+  font-size: 18px;
+}
+
+.empty-btn {
+  border: 2px solid var(--blue);
+  padding: 0.6rem 1.5rem;
+  font-size: 18px;
+  color: var(--white);
+  letter-spacing: 1.1px;
+}
+
+.empty-btn:hover {
+  background-color: transparent;
+  transition: 0.5s;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clear-btn {
+  border: 2px solid var(--red);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  letter-spacing: 1.1px;
+  background-color: var(--red);
+}
+.clear-btn > p {
+  font-size: 18px;
+}

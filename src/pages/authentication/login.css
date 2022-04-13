@@ -67,12 +67,12 @@
 }
 
 .login-wrapper-content > div > a {
-  text-decoration: none;
+  color: unset;
 }
 
 .login-wrapper-content > a {
   text-align: center;
-  text-decoration: none;
+  color: unset;
 }
 
 .login-content > h4,
