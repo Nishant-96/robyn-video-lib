@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", "HelveticaNeue-Light", sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #131a27;
+  --white: #f0ffff;
+  --light-white: #87949c;
+  --light-blue: #1f80e0;
+  --blue: #0063e5;
+  --nav-body: #1b263a;
+  --red: #cc0000;
+}
+
+body {
+  background-color: var(--black);
+  color: #f9f9f9;
+}
