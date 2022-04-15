@@ -38,3 +38,45 @@
 .sp-icon-sec > svg:hover {
   color: var(--blue);
 }
+
+@media only screen and (max-width: 768px) {
+  .sp-icon-sec > p {
+    display: none;
+  }
+
+  .sp-listing-header > h2 {
+    font-size: 20px;
+    width: 20ch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .sp-listing-header > p {
+    font-size: 14px;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .sp-iframe {
+    height: 15rem;
+  }
+
+  .sp-listing-header > h2 {
+    font-size: 16px;
+    width: 15ch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .sp-listing-header > p {
+    font-size: 12px;
+    text-align: justify;
+  }
+
+  .sp-icon-sec > svg {
+    font-size: 1rem;
+  }
+}
