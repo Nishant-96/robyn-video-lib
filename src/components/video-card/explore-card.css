@@ -7,10 +7,17 @@
 
 .explore-card-badge {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   position: absolute;
   right: 5%;
   bottom: 13%;
+}
+
+.exp-card-wrapper > h3 {
+  width: 20ch;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .explore-card-badge > svg {
@@ -19,4 +26,11 @@
 
 .explore-card-badge > svg:hover {
   color: var(--blue);
+}
+
+@media only screen and (max-width: 480px) {
+  .exp-card-wrapper > h3 {
+    font-size: 15px;
+    width: 14ch;
+  }
 }
