@@ -22,6 +22,12 @@
   cursor: pointer;
 }
 
+.explore-chips:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  transition: ease-out 0.25s;
+}
+
 .active-chip {
   background-color: var(--blue);
 }

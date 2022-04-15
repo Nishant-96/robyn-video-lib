@@ -1,7 +1,7 @@
 import React from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ExploreCard, Sidenav } from "../../components";
+import { Sidenav } from "../../components";
 import { Link } from "react-router-dom";
 
 export function History() {

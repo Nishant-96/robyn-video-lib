@@ -4,3 +4,4 @@ export { CategoryCard } from "./category-card/category-card.jsx";
 export { ExploreCard } from "./video-card/explore-card.jsx";
 export { LikedCard } from "./video-card/liked-card.jsx";
 export { RemoveCard } from "./video-card/remove-card.jsx";
+export { RequireAuth } from "./requireAuth/requireAuth.jsx";

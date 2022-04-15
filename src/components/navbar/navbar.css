@@ -25,7 +25,6 @@
   text-decoration: none;
 }
 
-
 .nav-right-input {
   align-items: center;
   display: flex;
@@ -68,6 +67,14 @@
 
 .nav-left {
   letter-spacing: 1.5px;
+}
+
+.logout-btn {
+  background-color: var(--red);
+}
+
+.hide-btn {
+  display: none;
 }
 
 @media only screen and (max-width: 650px) {

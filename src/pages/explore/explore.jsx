@@ -1,32 +1,44 @@
 import React from "react";
 import { ExploreCard, Sidenav } from "../../components";
+import { useData } from "../../context/data-context";
 
 import "./explore.css";
 export function Explore() {
+  const { state, dispatch } = useData();
   return (
     <div className="explore">
       <Sidenav />
       <div className="explore-cat-list">
-        <div className="explore-chips active-chip">All</div>
-        <div className="explore-chips">Marvel</div>
-        <div className="explore-chips">Disney</div>
-        <div className="explore-chips">Pixar</div>
-        <div className="explore-chips">Starwars</div>
-        <div className="explore-chips">DC</div>
+        <div
+          className={`explore-chips`}
+          onClick={() =>
+            dispatch({
+              type: "EXPLORE_FILTER",
+              payload: { value: "All" },
+            })
+          }
+        >
+          All
+        </div>
+        {state.defaultCategories.map((curr) => (
+          <div
+            key={curr._id}
+            className={`explore-chips`}
+            onClick={() =>
+              dispatch({
+                type: "EXPLORE_FILTER",
+                payload: { value: curr.categoryName },
+              })
+            }
+          >
+            {curr.categoryName}
+          </div>
+        ))}
       </div>
       <div className="explore-listing">
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
-        <ExploreCard />
+        {state.filteredVideos.map((curr) => (
+          <ExploreCard key={curr._id} videos={curr} />
+        ))}
       </div>
     </div>
   );

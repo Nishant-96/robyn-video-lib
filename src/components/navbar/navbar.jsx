@@ -3,7 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
+import { useAuth } from "../../context/authContext";
 export function Navbar() {
+  const { isLoggedIn, logoutHandler } = useAuth();
   return (
     <div className="navbar">
       <div className="nav-left">
@@ -14,10 +16,21 @@ export function Navbar() {
           <input placeholder="Search" />
           <SearchIcon className="nav-right-icon" />
         </div>
-
         <NavLink to="/login">
-          <button className="btn nav-btn">LOGIN</button>
+          <button className={`btn nav-btn ${isLoggedIn() ? "hide-btn" : null}`}>
+            Login
+          </button>
         </NavLink>
+        <button
+          className={`btn nav-btn logout-btn ${
+            isLoggedIn() ? null : "hide-btn"
+          }`}
+          onClick={() => {
+            logoutHandler();
+          }}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

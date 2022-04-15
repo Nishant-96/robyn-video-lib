@@ -8,22 +8,26 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "All",
-  },
-  {
-    _id: uuid(),
     categoryName: "Disney",
+    imgUrl: "/assets/images/disney.png",
+    videoUrl: "/assets/videos/disney.mp4",
   },
   {
     _id: uuid(),
     categoryName: "Marvel",
+    imgUrl: "/assets/images/marvel.png",
+    videoUrl: "/assets/videos/marvel.mp4",
   },
   {
     _id: uuid(),
     categoryName: "Pixar",
+    imgUrl: "/assets/images/pixar.png",
+    videoUrl: "/assets/videos/pixar.mp4",
   },
   {
     _id: uuid(),
-    categoryName: "Starwars",
+    categoryName: "Star Wars",
+    imgUrl: "/assets/images/starwars.png",
+    videoUrl: "/assets/videos/star-wars.mp4",
   },
 ];
