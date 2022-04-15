@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 
-
 const DataContext = createContext();
 
 const useData = () => useContext(DataContext);
@@ -11,6 +10,8 @@ const initialState = {
   defaultVideos: [],
   filteredVideos: [],
   userDetails: { email: "", password: "" },
+  searchInput: "",
+  searchedVideos: [],
 };
 function reducerFunc(state, action) {
   switch (action.type) {
@@ -33,14 +34,30 @@ function reducerFunc(state, action) {
       };
       break;
 
-  
+    case "SET_SEARCH_INPUT":
+      state = {
+        ...state,
+        searchInput: action.payload.value,
+      };
+      break;
+    case "SEARCHED_VIDEO":
+      state = {
+        ...state,
+        searchedVideos: [...state.defaultVideos].filter((curr) =>
+          curr.title.toLowerCase().includes(state.searchInput.toLowerCase())
+        ),
+      };
+      break;
     default:
       break;
   }
 
+  if (state.searchedVideos.length > 0) {
+    state = { ...state, filteredVideos: [...state.searchedVideos] };
+  }
+  
   return state;
 }
-
 
 const DataProvider = function ({ children }) {
   const [state, dispatch] = useReducer(reducerFunc, initialState);
