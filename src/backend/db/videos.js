@@ -40,13 +40,6 @@ export const videos = [
       "For the first time in the cinematic history of Spider-Man, our friendly neighborhood hero is unmasked and no longer able to separate his normal life from the high-stakes of being a Super Hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
   },
   {
-    _id: "frdj1zb9sMY",
-    title: "Rogue One: A Star Wars Story",
-    category: "Star Wars",
-    description:
-      "Research scientist Galen Erso and his family are in hiding on the planet Lah'mu when Imperial weapons developer Orson Krennic arrives to press him into completing the Death Star, a space station-based superweapon capable of destroying entire planets. ",
-  },
-  {
     _id: "7SlILk2WMTI",
     title: "Captain America: The Winter Soldier",
     category: "Marvel",
