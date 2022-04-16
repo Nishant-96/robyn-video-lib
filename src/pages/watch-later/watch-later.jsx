@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Sidenav } from "../../components";
+import { RemoveCard, Sidenav } from "../../components";
+import { useData } from "../../context/data-context";
 
 export function WatchLater() {
-  // for data set
-  const flag = false;
+  const { state } = useData();
+
+  const flag = state.watchLater.length > 0;
   return (
     <div className="explore">
       <Sidenav />
-      <h3>Watch Later (Count)</h3>
+      <h3>Watch Later ({state.watchLater.length} Videos)</h3>
 
-      {flag === false ? (
+      {!flag ? (
         <div className="explore-listing">
           <div className="listing-empty">
             <div>Looks like you haven't added anything in Watch Later yet.</div>
@@ -21,7 +23,9 @@ export function WatchLater() {
         </div>
       ) : (
         <div className="explore-listing">
-          {/* watch later cards will go here */}
+          {state.watchLater.map((curr) => (
+            <RemoveCard key={curr._id} videos={curr} />
+          ))}
         </div>
       )}
     </div>

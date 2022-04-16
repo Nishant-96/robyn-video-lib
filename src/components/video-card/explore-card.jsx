@@ -1,11 +1,23 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useData } from "../../context/data-context";
+import { addToWatchLater } from "../../utils";
+import { useAuth } from "../../context/authContext";
 
 import "./explore-card.css";
 
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-import { Link } from "react-router-dom";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
 export function ExploreCard({ videos }) {
+  const { state, dispatch } = useData();
+  const { token } = useAuth();
+  const navigate = useNavigate();
+  const inWatchLater = state.watchLater.find((curr) => curr._id === videos._id);
+  function watchLaterClickHandler() {
+    token
+      ? !inWatchLater && addToWatchLater(dispatch, token, videos)
+      : navigate("/login");
+  }
   return (
     <div className="explore-card">
       <div className="card card-shadow exp-card-wrapper">
@@ -21,7 +33,7 @@ export function ExploreCard({ videos }) {
         <p>{videos.category}</p>
         <div className="explore-card-badge">
           <PlaylistAddIcon />
-          <BookmarkAddIcon />
+          <WatchLaterIcon onClick={watchLaterClickHandler} />
         </div>
       </div>
     </div>

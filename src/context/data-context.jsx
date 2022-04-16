@@ -12,6 +12,7 @@ const initialState = {
   userDetails: { email: "", password: "" },
   searchInput: "",
   searchedVideos: [],
+  watchLater: [],
 };
 function reducerFunc(state, action) {
   switch (action.type) {
@@ -48,14 +49,21 @@ function reducerFunc(state, action) {
         ),
       };
       break;
+
+    case "ADD_TO_WATCH_LATER":
+      state = { ...state, watchLater: [...action.payload.watchlater] };
+      break;
+
+    case "REMOVE_FROM_WATCH_LATER":
+      state = { ...state, watchLater: [...action.payload.watchlater] };
+
+      break;
     default:
       break;
   }
-
   if (state.searchedVideos.length > 0) {
     state = { ...state, filteredVideos: [...state.searchedVideos] };
   }
-  
   return state;
 }
 
