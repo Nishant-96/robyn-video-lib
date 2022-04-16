@@ -7,15 +7,16 @@ import { useAuth } from "../../context/authContext";
 import "./explore-card.css";
 
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
 export function ExploreCard({ videos }) {
   const { state, dispatch } = useData();
   const { token } = useAuth();
   const navigate = useNavigate();
   const inWatchLater = state.watchLater.find((curr) => curr._id === videos._id);
   function watchLaterClickHandler() {
-    token ? !inWatchLater && addToWatchLater(dispatch, token, videos) : navigate("/login");
+    token
+      ? !inWatchLater && addToWatchLater(dispatch, token, videos)
+      : navigate("/login");
   }
   return (
     <div className="explore-card">
@@ -32,7 +33,7 @@ export function ExploreCard({ videos }) {
         <p>{videos.category}</p>
         <div className="explore-card-badge">
           <PlaylistAddIcon />
-          <BookmarkAddIcon onClick={watchLaterClickHandler} />
+          <WatchLaterIcon onClick={watchLaterClickHandler} />
         </div>
       </div>
     </div>
