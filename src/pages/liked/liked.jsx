@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Sidenav } from "../../components";
-
+import { LikedCard, Sidenav } from "../../components";
+import { useData } from "../../context/data-context";
 export function Liked() {
-  // for data set
-  const flag = false;
+  const { state } = useData();
+
+  const flag = state.likedVideos.length > 0;
+
   return (
     <div className="explore">
       <Sidenav />
-      <h3>Liked Videos (Count)</h3>
+      <h3>Liked Videos ( {state.likedVideos.length} Videos )</h3>
 
-      {flag === false ? (
+      {!flag ? (
         <div className="explore-listing">
           <div className="listing-empty">
             <div>Looks like you haven't liked anything yet.</div>
@@ -20,7 +22,11 @@ export function Liked() {
           </div>
         </div>
       ) : (
-        <div className="explore-listing">{/* liked cards will go here */}</div>
+        <div className="explore-listing">
+          {state.likedVideos.map((curr) => (
+            <LikedCard key={curr._id} videos={curr} />
+          ))}
+        </div>
       )}
     </div>
   );
