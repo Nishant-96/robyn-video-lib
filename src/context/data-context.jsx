@@ -13,6 +13,7 @@ const initialState = {
   searchInput: "",
   searchedVideos: [],
   watchLater: [],
+  likedVideos: [],
 };
 function reducerFunc(state, action) {
   switch (action.type) {
@@ -56,7 +57,13 @@ function reducerFunc(state, action) {
 
     case "REMOVE_FROM_WATCH_LATER":
       state = { ...state, watchLater: [...action.payload.watchlater] };
+      break;
+    case "ADD_TO_LIKED":
+      state = { ...state, likedVideos: [...action.payload.likes] };
+      break;
 
+    case "REMOVE_FROM_LIKED":
+      state = { ...state, likedVideos: [...action.payload.likes] };
       break;
     default:
       break;

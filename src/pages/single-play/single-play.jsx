@@ -1,18 +1,40 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
-
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import "./single-play.css";
 import { Sidenav } from "../../components";
+import { addToLiked, addToWatchLater, fetchVideo } from "../../utils";
+import { useAuth } from "../../context/authContext";
 import { useData } from "../../context/data-context";
 
 export function SinglePlay() {
   const { videoId } = useParams();
-  const { state } = useData();
-  const [video] = state.defaultVideos.filter((curr) => curr._id === videoId);
+  const [video, setVideo] = useState({});
+  const { token } = useAuth();
+  const navigate = useNavigate();
+  const { state, dispatch } = useData();
+
+  const inWatchLater = state.watchLater.find((curr) => curr._id === video._id);
+  const inLiked = state.likedVideos.find((curr) => curr._id === video._id);
+
+  function likeHandler() {
+    token ? !inLiked && addToLiked(dispatch, token, video) : navigate("/login");
+  }
+  function watchLaterClickHandler() {
+    token
+      ? !inWatchLater && addToWatchLater(dispatch, token, video)
+      : navigate("/login");
+  }
+
+  useEffect(() => {
+    (async () => {
+      const fetchedVideo = await fetchVideo(videoId);
+      setVideo(fetchedVideo);
+    })();
+  }, [videoId]);
 
   return (
     <div className="explore">
@@ -32,11 +54,11 @@ export function SinglePlay() {
           <p>{video.description}</p>
           <div className="sp-icons">
             <div className="sp-icon-sec">
-              <ThumbUpIcon />
+              <ThumbUpIcon onClick={likeHandler} />
               <p>Like</p>
             </div>
-            <div className="sp-icon-sec">
-              <BookmarkAddIcon />
+            <div className="sp-icon-sec ">
+              <WatchLaterIcon onClick={watchLaterClickHandler} />
               <p>Watch Later</p>
             </div>
             <div className="sp-icon-sec">
