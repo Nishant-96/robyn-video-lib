@@ -13,6 +13,8 @@ const AuthProvider = function ({ children }) {
     token: "",
   });
 
+  const token = userState.token;
+
   const loginHandler = async (email, password) => {
     try {
       const response = await axios.post("/api/auth/login", { email, password });
@@ -88,14 +90,18 @@ const AuthProvider = function ({ children }) {
 
   useEffect(() => {
     const authCheck = JSON.parse(localStorage.getItem("AUTHENTICATION"));
+
     if (authCheck) {
-      setUserState(authCheck.userDetails);
+      setUserState({
+        userDetails: authCheck.userDetails,
+        token: authCheck.token,
+      });
     }
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ loginHandler, isLoggedIn, logoutHandler, signUpHandler }}
+      value={{ token, loginHandler, isLoggedIn, logoutHandler, signUpHandler }}
     >
       {children}
     </AuthContext.Provider>
