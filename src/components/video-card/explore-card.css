@@ -28,6 +28,24 @@
   color: var(--blue);
 }
 
+.pfc-overlay {
+  position: absolute;
+  right: 0;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.playlist-folder {
+  z-index: 5;
+  bottom: 6%;
+}
+
 @media only screen and (max-width: 480px) {
   .exp-card-wrapper > h3 {
     font-size: 15px;

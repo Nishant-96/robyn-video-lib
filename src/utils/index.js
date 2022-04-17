@@ -6,3 +6,7 @@ export { removeFromLiked } from "./likedFunction";
 export { addToHistory } from "./watchHistory";
 export { removeFromHistory } from "./watchHistory";
 export { removeAllHistory } from "./watchHistory";
+export { createPlaylist } from "./playlistFunc";
+export { addToPlaylist } from "./playlistFunc";
+export { removePlaylist } from "./playlistFunc";
+export { removeFromPlaylist } from "./playlistFunc";

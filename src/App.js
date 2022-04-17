@@ -10,14 +10,20 @@ import {
   Playlist,
   SignUp,
   SinglePlay,
+  SinglePlaylist,
   WatchLater,
 } from "./pages";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import Mockman from "mockman-js";
 import { useEffect } from "react";
+import { useData } from "./context/data-context";
 function App() {
   const { pathname } = useLocation();
+
+
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -60,6 +66,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="/playlist/:playlistId" element={<SinglePlaylist />} />
         <Route path="/singleplay/:videoId" element={<SinglePlay />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />

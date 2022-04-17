@@ -5,7 +5,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import "./single-play.css";
-import { Sidenav } from "../../components";
+import { PlaylistModal, Sidenav } from "../../components";
 import { addToLiked, addToWatchLater, fetchVideo } from "../../utils";
 import { useAuth } from "../../context/authContext";
 import { useData } from "../../context/data-context";
@@ -20,6 +20,9 @@ export function SinglePlay() {
   const inWatchLater = state.watchLater.find((curr) => curr._id === video._id);
   const inLiked = state.likedVideos.find((curr) => curr._id === video._id);
 
+  function playlistClickHandler() {
+    dispatch({ type: "PLAYLIST_MODAL", payload: { value: true } });
+  }
   function likeHandler() {
     token ? !inLiked && addToLiked(dispatch, token, video) : navigate("/login");
   }
@@ -39,6 +42,7 @@ export function SinglePlay() {
   return (
     <div className="explore">
       <Sidenav />
+      <PlaylistModal />
       <div className="single-play-listing">
         <iframe
           className="sp-iframe"
@@ -62,7 +66,7 @@ export function SinglePlay() {
               <p>Watch Later</p>
             </div>
             <div className="sp-icon-sec">
-              <PlaylistAddIcon />
+              <PlaylistAddIcon onClick={playlistClickHandler} />
               <p>Add To Playlist</p>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ExploreCard, Sidenav } from "../../components";
+import { ExploreCard, PlaylistModal, Sidenav } from "../../components";
 import { useData } from "../../context/data-context";
 
 import "./explore.css";
@@ -20,6 +20,7 @@ export function Explore() {
         >
           All
         </div>
+        <PlaylistModal />
         {state.defaultCategories.map((curr) => (
           <div
             key={curr._id}

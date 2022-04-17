@@ -8,6 +8,7 @@ import "./explore-card.css";
 
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import { PlaylistModal } from "../playlist-modal/playlist-modal";
 export function ExploreCard({ videos }) {
   const { state, dispatch } = useData();
   const { token } = useAuth();
@@ -16,8 +17,13 @@ export function ExploreCard({ videos }) {
 
   const inHistory = state.historyVideos.find((curr) => curr._id === videos._id);
 
+  function playlistClickHandler() {
+    dispatch({
+      type: "PLAYLIST_MODAL",
+      payload: { value: true, video: videos },
+    });
+  }
   function historyClickHandler() {
-
     navigate(`/singleplay/${videos._id}`);
     token && !inHistory && addToHistory(dispatch, token, videos);
   }
@@ -26,8 +32,7 @@ export function ExploreCard({ videos }) {
       ? !inWatchLater && addToWatchLater(dispatch, token, videos)
       : navigate("/login");
   }
-  // to={`/singleplay/${videos._id}`}
-  // onClick={historyClickHandler}
+
   return (
     <div className="explore-card">
       <div className="card card-shadow exp-card-wrapper">
@@ -42,7 +47,7 @@ export function ExploreCard({ videos }) {
         <h3>{videos.title}</h3>
         <p>{videos.category}</p>
         <div className="explore-card-badge">
-          <PlaylistAddIcon />
+          <PlaylistAddIcon onClick={playlistClickHandler} />
           <WatchLaterIcon onClick={watchLaterClickHandler} />
         </div>
       </div>
