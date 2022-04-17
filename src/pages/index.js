@@ -8,3 +8,4 @@ export { Liked } from "./liked/liked.jsx";
 export { WatchLater } from "./watch-later/watch-later.jsx";
 export { History } from "./history/history.jsx";
 export { SinglePlay } from "./single-play/single-play.jsx";
+export {SinglePlaylist} from "./playlist/single-playlist.jsx"

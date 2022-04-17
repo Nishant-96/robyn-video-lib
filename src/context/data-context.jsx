@@ -15,6 +15,8 @@ const initialState = {
   watchLater: [],
   likedVideos: [],
   historyVideos: [],
+  playlistModalState: {},
+  playlistsArr: [],
 };
 function reducerFunc(state, action) {
   switch (action.type) {
@@ -75,6 +77,42 @@ function reducerFunc(state, action) {
       break;
     case "REMOVE_ALL_HISTORY":
       state = { ...state, historyVideos: [...action.payload.history] };
+      break;
+    case "PLAYLIST_MODAL":
+      state = {
+        ...state,
+        playlistModalState: action.payload,
+      };
+      break;
+
+    case "CREATE_PLAYLIST":
+   
+      state = { ...state, playlistsArr: [...action.payload.playlists] };
+      break;
+    case "REMOVE_FROM_PLAYLIST":
+      state = { ...state, playlistsArr: [...action.payload.playlists] };
+      break;
+    case "ADD_VIDEO_TO_PLAYLIST":
+      state = {
+        ...state,
+        playlistsArr: [...state.playlistsArr].map((curr) => {
+          if (curr._id === action.payload.id) {
+            return { ...curr, videos: [...action.payload.videos] };
+          }
+          return { ...curr };
+        }),
+      };
+      break;
+    case "REMOVE_VIDEO_FROM_PLAYLIST":
+      state = {
+        ...state,
+        playlistsArr: [...state.playlistsArr].map((curr) => {
+          if (curr._id === action.payload.id) {
+            return { ...curr, videos: [...action.payload.videos] };
+          }
+          return { ...curr };
+        }),
+      };
       break;
     default:
       break;
