@@ -14,6 +14,7 @@ const initialState = {
   searchedVideos: [],
   watchLater: [],
   likedVideos: [],
+  historyVideos: [],
 };
 function reducerFunc(state, action) {
   switch (action.type) {
@@ -64,6 +65,16 @@ function reducerFunc(state, action) {
 
     case "REMOVE_FROM_LIKED":
       state = { ...state, likedVideos: [...action.payload.likes] };
+      break;
+
+    case "ADD_TO_HISTORY":
+      state = { ...state, historyVideos: [...action.payload.history] };
+      break;
+    case "REMOVE_FROM_HISTORY":
+      state = { ...state, historyVideos: [...action.payload.history] };
+      break;
+    case "REMOVE_ALL_HISTORY":
+      state = { ...state, historyVideos: [...action.payload.history] };
       break;
     default:
       break;
