@@ -25,7 +25,13 @@ export function Navbar() {
   return (
     <div className="navbar">
       <div className="nav-left">
-        <Link to="/">RobynTube</Link>
+        <Link to="/">
+          <img
+            className="image-responsive nav-left-img"
+            alt="logo "
+            src="/assets/images/logo.png"
+          />
+        </Link>
       </div>
       <div className="nav-right">
         <div className="nav-right-input">

@@ -65,8 +65,8 @@
   font-size: 14px;
 }
 
-.nav-left {
-  letter-spacing: 1.5px;
+.nav-left-img {
+  height: 4.4rem;
 }
 
 .logout-btn {
@@ -86,7 +86,6 @@
   }
 }
 
-/* Replace by logo in left the tag with logo*/
 @media only screen and (max-width: 420px) {
   .nav-right-input > input {
     width: 5rem;
