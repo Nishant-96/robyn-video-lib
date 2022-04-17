@@ -17,7 +17,7 @@ import {
 import { Routes, Route, useLocation } from "react-router-dom";
 import Mockman from "mockman-js";
 import { useEffect } from "react";
-import { useData } from "./context/data-context";
+
 function App() {
   const { pathname } = useLocation();
 
