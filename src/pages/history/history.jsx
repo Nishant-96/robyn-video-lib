@@ -1,23 +1,32 @@
 import React from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Sidenav } from "../../components";
+import { HistoryCard, Sidenav } from "../../components";
 import { Link } from "react-router-dom";
-
+import { useData } from "../../context/data-context";
+import { useAuth } from "../../context/authContext";
+import { removeAllHistory } from "../../utils";
 export function History() {
-  const flag = false;
+  const { state, dispatch } = useData();
+  const { token } = useAuth();
+
+  const flag = state.historyVideos.length > 0;
+
+  function clearAllHandler() {
+    token && flag && removeAllHistory(dispatch, token);
+  }
   return (
     <div className="explore">
       <Sidenav />
       <div className="history-header">
         <h3>Watch History </h3>
-        <button className="btn btn-danger clear-btn">
+        <button className="btn btn-danger clear-btn" onClick={clearAllHandler}>
           <DeleteIcon />
           <p>Clear</p>
         </button>
       </div>
 
-      {flag === false ? (
+      {!flag ? (
         <div className="explore-listing">
           <div className="listing-empty">
             <div>Looks like you haven't started watching.</div>
@@ -27,7 +36,11 @@ export function History() {
           </div>
         </div>
       ) : (
-        <div className="explore-listing">{/* liked cards will go here */}</div>
+        <div className="explore-listing">
+          {state.historyVideos.map((curr) => (
+            <HistoryCard key={curr._id} videos={curr} />
+          ))}
+        </div>
       )}
     </div>
   );
