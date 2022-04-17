@@ -5,17 +5,20 @@ import { useData } from "../../context/data-context";
 import CloseIcon from "@mui/icons-material/Close";
 import { addToPlaylist, createPlaylist, removeFromPlaylist } from "../../utils";
 import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 export function PlaylistModal() {
   const { state, dispatch } = useData();
   const [playlistState, setPlaylistState] = useState({
     title: "",
   });
+  const navigate = useNavigate();
   const { token } = useAuth();
 
   function createPlaylistHandler() {
-    playlistState.title !== "" &&
-      token &&
-      createPlaylist(dispatch, token, playlistState.title);
+    token
+      ? playlistState.title !== "" &&
+        createPlaylist(dispatch, token, playlistState.title)
+      : navigate("/login");
   }
 
   if (!state.playlistModalState.value) return null;
