@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 const AuthContext = createContext();
@@ -9,8 +9,9 @@ const AuthProvider = function ({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [userState, setUserState] = useState({
-    userDetails: "",
-    token: "",
+    userDetails:
+      JSON.parse(localStorage.getItem("VIDEO_AUTH_USER"))?.userDetails || "",
+    token: JSON.parse(localStorage.getItem("VIDEO_AUTH_TOKEN"))?.token || "",
   });
 
   const token = userState.token;
@@ -25,9 +26,14 @@ const AuthProvider = function ({ children }) {
         } = response;
         setUserState({ userDetails: foundUser, token: encodedToken });
         localStorage.setItem(
-          "AUTHENTICATION",
+          "VIDEO_AUTH_USER",
           JSON.stringify({
             userDetails: foundUser,
+          })
+        );
+        localStorage.setItem(
+          "VIDEO_AUTH_TOKEN",
+          JSON.stringify({
             token: encodedToken,
           })
         );
@@ -52,7 +58,8 @@ const AuthProvider = function ({ children }) {
       userDetails: "",
       token: "",
     });
-    localStorage.removeItem("AUTHENTICATION");
+    localStorage.removeItem("VIDEO_AUTH_USER");
+    localStorage.removeItem("VIDEO_AUTH_TOKEN");
     navigate("/");
   };
 
@@ -74,9 +81,14 @@ const AuthProvider = function ({ children }) {
           } = response;
           setUserState({ userDetails: createdUser, token: encodedToken });
           localStorage.setItem(
-            "AUTHENTICATION",
+            "VIDEO_AUTH_USER",
             JSON.stringify({
               userDetails: createdUser,
+            })
+          );
+          localStorage.setItem(
+            "VIDEO_AUTH_TOKEN",
+            JSON.stringify({
               token: encodedToken,
             })
           );
@@ -87,17 +99,6 @@ const AuthProvider = function ({ children }) {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    const authCheck = JSON.parse(localStorage.getItem("AUTHENTICATION"));
-
-    if (authCheck) {
-      setUserState({
-        userDetails: authCheck.userDetails,
-        token: authCheck.token,
-      });
-    }
-  }, []);
 
   return (
     <AuthContext.Provider
