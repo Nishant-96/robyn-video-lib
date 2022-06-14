@@ -40,6 +40,9 @@ export function History() {
           {state.historyVideos.map((curr) => (
             <HistoryCard key={curr._id} videos={curr} />
           ))}
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
         </div>
       )}
     </div>

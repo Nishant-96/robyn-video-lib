@@ -40,6 +40,9 @@ export function Explore() {
         {state.filteredVideos.map((curr) => (
           <ExploreCard key={curr._id} videos={curr} />
         ))}
+        <div className="vdo-d-card"></div>
+        <div className="vdo-d-card"></div>
+        <div className="vdo-d-card"></div>
       </div>
     </div>
   );

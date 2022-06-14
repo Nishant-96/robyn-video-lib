@@ -26,6 +26,9 @@ export function Liked() {
           {state.likedVideos.map((curr) => (
             <LikedCard key={curr._id} videos={curr} />
           ))}
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
         </div>
       )}
     </div>

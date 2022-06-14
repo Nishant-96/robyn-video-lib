@@ -10,7 +10,7 @@ export function WatchLater() {
   return (
     <div className="explore">
       <Sidenav />
-      <h3>Watch Later ({state.watchLater.length} Videos)</h3>
+      <h3>Watch Later ( {state.watchLater.length} Videos )</h3>
 
       {!flag ? (
         <div className="explore-listing">
@@ -26,6 +26,9 @@ export function WatchLater() {
           {state.watchLater.map((curr) => (
             <RemoveCard key={curr._id} videos={curr} />
           ))}
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
         </div>
       )}
     </div>

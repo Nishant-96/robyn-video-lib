@@ -36,6 +36,9 @@ export function SinglePlaylist() {
               playlistId={playlistId}
             />
           ))}
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
         </div>
       )}
     </div>
