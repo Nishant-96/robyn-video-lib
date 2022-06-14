@@ -116,7 +116,7 @@ function reducerFunc(state, action) {
     default:
       break;
   }
-  
+
   if (state.searchedVideos.length > 0 && state.searchInput !== "") {
     state = { ...state, filteredVideos: [...state.searchedVideos] };
   }
