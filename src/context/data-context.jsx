@@ -86,7 +86,6 @@ function reducerFunc(state, action) {
       break;
 
     case "CREATE_PLAYLIST":
-   
       state = { ...state, playlistsArr: [...action.payload.playlists] };
       break;
     case "REMOVE_FROM_PLAYLIST":
@@ -117,7 +116,8 @@ function reducerFunc(state, action) {
     default:
       break;
   }
-  if (state.searchedVideos.length > 0) {
+  
+  if (state.searchedVideos.length > 0 && state.searchInput !== "") {
     state = { ...state, filteredVideos: [...state.searchedVideos] };
   }
   return state;

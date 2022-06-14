@@ -5,7 +5,7 @@ import { CategoryCard } from "../../components";
 
 import "./home.css";
 export function Home() {
-  const { state } = useData();
+  const { state, dispatch } = useData();
 
   return (
     <div className="home">
@@ -15,7 +15,17 @@ export function Home() {
             <h2>Robyn Tube</h2>
             <h3>See the world of fiction come Alive</h3>
             <Link to="/explore">
-              <button className="btn btn-primary home-btn">Watch Now</button>
+              <button
+                className="btn btn-primary home-btn"
+                onClick={() =>
+                  dispatch({
+                    type: "EXPLORE_FILTER",
+                    payload: { value: "All" },
+                  })
+                }
+              >
+                Watch Now
+              </button>
             </Link>
           </div>
         </div>

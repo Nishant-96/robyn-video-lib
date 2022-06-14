@@ -21,7 +21,10 @@ export function SinglePlay() {
   const inLiked = state.likedVideos.find((curr) => curr._id === video._id);
 
   function playlistClickHandler() {
-    dispatch({ type: "PLAYLIST_MODAL", payload: { value: true } });
+    dispatch({
+      type: "PLAYLIST_MODAL",
+      payload: { value: true, video: video },
+    });
   }
   function likeHandler() {
     token ? !inLiked && addToLiked(dispatch, token, video) : navigate("/login");
