@@ -1,12 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../../context/authContext";
+import { formValidationLogin } from "../../utils";
 
 import "./login.css";
 export function Login() {
   const { loginHandler } = useAuth();
 
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
+
+  const loginCLickHandler = (userDetails) => {
+    const validation = formValidationLogin({ ...userDetails });
+    try {
+      if (validation.type) {
+        loginHandler(userDetails.email, userDetails.password);
+      } else {
+        throw new Error(validation.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+      toast.error(`${error.message}`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
 
   return (
     <div className="login">
@@ -47,12 +71,11 @@ export function Login() {
                 <input type="checkbox" />
                 Remember Me
               </label>
-              <Link to="/forgot-password">Forgot Your Password ?</Link>
             </div>
             <button
               className="btn btn-primary auth-btn"
               onClick={() => {
-                loginHandler(userDetails.email, userDetails.password);
+                loginCLickHandler(userDetails);
               }}
             >
               Login
@@ -60,7 +83,7 @@ export function Login() {
             <button
               className="btn btn-primary auth-btn"
               onClick={() => {
-                loginHandler("adarshbalika@gmail.com", "adarshBalika123");
+                loginHandler("nishant@gmail.com", "nishant123");
               }}
             >
               Guest Login

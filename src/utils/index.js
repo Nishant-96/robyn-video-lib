@@ -10,3 +10,5 @@ export { createPlaylist } from "./playlistFunc";
 export { addToPlaylist } from "./playlistFunc";
 export { removePlaylist } from "./playlistFunc";
 export { removeFromPlaylist } from "./playlistFunc";
+export { formValidationSignUp } from "./validation";
+export { formValidationLogin } from "./validation";

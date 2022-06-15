@@ -47,7 +47,16 @@ export function Navbar() {
             }
             onKeyDown={(event) => searchHandler(event)}
           />
-          <SearchIcon className="nav-right-icon" />
+          <SearchIcon
+            className="nav-right-icon"
+            onClick={() =>
+              !!state.searchInput &&
+              dispatch({
+                type: "SEARCHED_VIDEO",
+                payload: { value: state.searchInput },
+              })
+            }
+          />
         </div>
         <NavLink to="/login">
           <button className={`btn nav-btn ${isLoggedIn() ? "hide-btn" : null}`}>

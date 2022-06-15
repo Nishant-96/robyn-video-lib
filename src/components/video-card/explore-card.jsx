@@ -1,14 +1,17 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/data-context";
-import { addToHistory, addToWatchLater } from "../../utils";
+import {
+  addToHistory,
+  addToWatchLater,
+  removeFromWatchLater,
+} from "../../utils";
 import { useAuth } from "../../context/authContext";
 
 import "./explore-card.css";
-
+import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
-import { PlaylistModal } from "../playlist-modal/playlist-modal";
 export function ExploreCard({ videos }) {
   const { state, dispatch } = useData();
   const { token } = useAuth();
@@ -29,7 +32,9 @@ export function ExploreCard({ videos }) {
   }
   function watchLaterClickHandler() {
     token
-      ? !inWatchLater && addToWatchLater(dispatch, token, videos)
+      ? !!inWatchLater
+        ? removeFromWatchLater(dispatch, token, videos._id)
+        : addToWatchLater(dispatch, token, videos)
       : navigate("/login");
   }
 
@@ -48,7 +53,11 @@ export function ExploreCard({ videos }) {
         <p>{videos.category}</p>
         <div className="explore-card-badge">
           <PlaylistAddIcon onClick={playlistClickHandler} />
-          <WatchLaterIcon onClick={watchLaterClickHandler} />
+          {!!inWatchLater ? (
+            <WatchLaterIcon onClick={watchLaterClickHandler} />
+          ) : (
+            <WatchLaterOutlinedIcon onClick={watchLaterClickHandler} />
+          )}
         </div>
       </div>
     </div>

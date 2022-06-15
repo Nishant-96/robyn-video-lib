@@ -27,6 +27,9 @@ export function Playlist() {
           {state.playlistsArr.map((curr) => (
             <PlaylistFolderCard key={curr._id} playlist={curr} />
           ))}
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
+          <div className="vdo-d-card"></div>
         </div>
       )}
     </div>

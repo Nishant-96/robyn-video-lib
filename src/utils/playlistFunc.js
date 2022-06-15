@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { toast } from "react-toastify";
 export const createPlaylist = async (dispatch, token, playlistTitle) => {
   try {
     const {
@@ -13,8 +13,17 @@ export const createPlaylist = async (dispatch, token, playlistTitle) => {
         },
       }
     );
-  
+
     dispatch({ type: "CREATE_PLAYLIST", payload: { playlists } });
+    toast.success(`Playlist Created`, {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -30,6 +39,15 @@ export const removePlaylist = async (dispatch, token, id) => {
       },
     });
     dispatch({ type: "REMOVE_FROM_PLAYLIST", payload: { playlists } });
+    toast.success(`Playlist Deleted`, {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -56,6 +74,15 @@ export const addToPlaylist = async (dispatch, token, playlistId, video) => {
       type: "ADD_VIDEO_TO_PLAYLIST",
       payload: { id: playlistId, videos },
     });
+    toast.success(`Video Saved To Playlist`, {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -81,6 +108,15 @@ export const removeFromPlaylist = async (
     dispatch({
       type: "REMOVE_VIDEO_FROM_PLAYLIST",
       payload: { id: playlistId, videos },
+    });
+    toast.success(`Video Removed From Playlist`, {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
   } catch (error) {
     console.log(error);
