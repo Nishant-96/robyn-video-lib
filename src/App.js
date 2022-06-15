@@ -2,7 +2,6 @@ import "./App.css";
 import { Navbar, RequireAuth, Toast } from "./components";
 import {
   Explore,
-  Forgot,
   History,
   Home,
   Liked,
@@ -68,7 +67,6 @@ function App() {
         <Route path="/singleplay/:videoId" element={<SinglePlay />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/forgot-password" element={<Forgot />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>
