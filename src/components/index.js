@@ -9,3 +9,4 @@ export { HistoryCard } from "./video-card/history-card.jsx";
 export { PlaylistModal } from "./playlist-modal/playlist-modal.jsx";
 export { PlaylistCard } from "./video-card/playlist-card.jsx";
 export { PlaylistFolderCard } from "./video-card/playlist-folder-card";
+export { Toast } from "./toast/toast.jsx";

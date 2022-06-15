@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navbar, RequireAuth } from "./components";
+import { Navbar, RequireAuth, Toast } from "./components";
 import {
   Explore,
   Forgot,
@@ -21,9 +21,6 @@ import { useEffect } from "react";
 function App() {
   const { pathname } = useLocation();
 
-
-
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -31,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <Toast />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={<Explore />} />

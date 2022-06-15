@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import ShareIcon from "@mui/icons-material/Share";
 import WatchLaterOutlinedIcon from "@mui/icons-material/WatchLaterOutlined";
@@ -95,11 +96,20 @@ export function SinglePlay() {
             </div>
             <div
               className="sp-icon-sec"
-              onClick={() =>
+              onClick={() => {
                 navigator.clipboard.writeText(
                   `https://robyntube.netlify.app/singleplay/${videoId}`
-                )
-              }
+                );
+                toast.success(`Link Copied To Clipboard`, {
+                  position: "top-right",
+                  autoClose: 1500,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+              }}
             >
               <ShareIcon />
               <p>Share</p>

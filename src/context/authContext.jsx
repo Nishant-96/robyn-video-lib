@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const AuthContext = createContext();
 
 const useAuth = () => useContext(AuthContext);
@@ -40,9 +41,27 @@ const AuthProvider = function ({ children }) {
         navigate(location?.state?.from?.pathname || "/", {
           replace: true,
         });
+        toast.success(`Welcome, ${foundUser.firstName}`, {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } catch (error) {
       console.log(error);
+      toast.error(`Login Error !`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -61,6 +80,15 @@ const AuthProvider = function ({ children }) {
     localStorage.removeItem("VIDEO_AUTH_USER");
     localStorage.removeItem("VIDEO_AUTH_TOKEN");
     navigate("/");
+    toast.success(`Logged Out`, {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const signUpHandler = async (email, password, name, confirmPass) => {
@@ -74,6 +102,7 @@ const AuthProvider = function ({ children }) {
         const response = await axios.post("/api/auth/signup", {
           email,
           password,
+          name,
         });
         if (response.status === 201) {
           const {
@@ -93,10 +122,28 @@ const AuthProvider = function ({ children }) {
             })
           );
           navigate("/explore");
+          toast.success(`Welcome, ${createdUser.name}`, {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       } else throw new Error("Check all input Credentials");
     } catch (error) {
       console.error(error);
+      toast.error(`Signup Error ! ${error.message}`, {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 

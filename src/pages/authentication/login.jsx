@@ -60,7 +60,7 @@ export function Login() {
             <button
               className="btn btn-primary auth-btn"
               onClick={() => {
-                loginHandler("adarshbalika@gmail.com", "adarshBalika123");
+                loginHandler("nishant@gmail.com", "nishant123");
               }}
             >
               Guest Login

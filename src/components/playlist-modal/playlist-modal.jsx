@@ -25,12 +25,16 @@ export function PlaylistModal() {
   return (
     <div
       className="modal-container"
-      onClick={() =>
+      onClick={() => {
         dispatch({
           type: "PLAYLIST_MODAL",
           payload: { value: false },
-        })
-      }
+        });
+        setPlaylistState((prev) => ({
+          ...prev,
+          title: "",
+        }));
+      }}
     >
       <div
         className="modal modal-wrapper"
@@ -41,12 +45,16 @@ export function PlaylistModal() {
         <div className="modal-header">
           <h3 className="modal-title">Save To</h3>
           <CloseIcon
-            onClick={() =>
+            onClick={() => {
               dispatch({
                 type: "PLAYLIST_MODAL",
                 payload: { value: false },
-              })
-            }
+              });
+              setPlaylistState((prev) => ({
+                ...prev,
+                title: "",
+              }));
+            }}
           />
         </div>
         <div className="modal-body">
