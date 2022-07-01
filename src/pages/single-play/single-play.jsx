@@ -88,22 +88,12 @@ export function SinglePlay() {
           <h5>{video.category}</h5>
           <p>{video.description}</p>
           <div className="sp-icons">
-            <div className="sp-icon-sec">
-              {!!inLiked ? (
-                <ThumbUpIcon onClick={likeHandler} />
-              ) : (
-                <ThumbUpOutlinedIcon onClick={likeHandler} />
-              )}
-
+            <div className="sp-icon-sec" onClick={likeHandler}>
+              {!!inLiked ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
               <p>Like</p>
             </div>
-            <div className="sp-icon-sec ">
-              {!!inWatchLater ? (
-                <WatchLaterIcon onClick={watchLaterClickHandler} />
-              ) : (
-                <WatchLaterOutlinedIcon onClick={watchLaterClickHandler} />
-              )}
-
+            <div className="sp-icon-sec " onClick={watchLaterClickHandler}>
+              {!!inWatchLater ? <WatchLaterIcon /> : <WatchLaterOutlinedIcon />}
               <p>Watch Later</p>
             </div>
             <div
@@ -126,8 +116,8 @@ export function SinglePlay() {
               <ShareIcon />
               <p>Share</p>
             </div>
-            <div className="sp-icon-sec">
-              <PlaylistAddIcon onClick={playlistClickHandler} />
+            <div className="sp-icon-sec" onClick={playlistClickHandler}>
+              <PlaylistAddIcon />
               <p>Add To Playlist</p>
             </div>
           </div>

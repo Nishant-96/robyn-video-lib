@@ -1,6 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-export const createPlaylist = async (dispatch, token, playlistTitle) => {
+export const createPlaylist = async (
+  dispatch,
+  token,
+  playlistTitle,
+  setPlaylistState
+) => {
   try {
     const {
       data: { playlists },
@@ -15,6 +20,10 @@ export const createPlaylist = async (dispatch, token, playlistTitle) => {
     );
 
     dispatch({ type: "CREATE_PLAYLIST", payload: { playlists } });
+    setPlaylistState((prev) => ({
+      ...prev,
+      title: "",
+    }));
     toast.success(`Playlist Created`, {
       position: "top-right",
       autoClose: 1500,

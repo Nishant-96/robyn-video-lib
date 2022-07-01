@@ -17,7 +17,7 @@ export function PlaylistModal() {
   function createPlaylistHandler() {
     token
       ? playlistState.title !== "" &&
-        createPlaylist(dispatch, token, playlistState.title)
+        createPlaylist(dispatch, token, playlistState.title, setPlaylistState)
       : navigate("/login");
   }
 
