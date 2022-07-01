@@ -23,6 +23,10 @@
   color: var(--white);
 }
 
+.modal-header > svg {
+  cursor: pointer;
+}
+
 .modal-button {
   background-color: var(--blue);
   color: var(--white);
@@ -41,6 +45,14 @@
   flex-direction: column;
   gap: 0.6rem;
 }
+
+.modal-body > label {
+  cursor: pointer;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
 .modal-body-creater {
   display: flex;
   gap: 0.5rem;

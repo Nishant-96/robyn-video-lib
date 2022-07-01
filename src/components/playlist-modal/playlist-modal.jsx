@@ -58,38 +58,39 @@ export function PlaylistModal() {
           />
         </div>
         <div className="modal-body">
-          {state.playlistsArr.map((curr) => (
-            <label key={curr._id}>
-              <input
-                name="playlist-list"
-                type="checkbox"
-                id={curr._id}
-                value={curr._id}
-                checked={curr.videos.some(
-                  (element) =>
-                    element._id === state.playlistModalState.video._id
-                )}
-                onChange={(event) =>
-                  event.target.checked
-                    ? token &&
-                      addToPlaylist(
-                        dispatch,
-                        token,
-                        curr._id,
-                        state.playlistModalState.video
-                      )
-                    : token &&
-                      removeFromPlaylist(
-                        dispatch,
-                        token,
-                        curr._id,
-                        state.playlistModalState.video._id
-                      )
-                }
-              />
-              {curr.title}
-            </label>
-          ))}
+          {token &&
+            state.playlistsArr.map((curr) => (
+              <label key={curr._id}>
+                <input
+                  name="playlist-list"
+                  type="checkbox"
+                  id={curr._id}
+                  value={curr._id}
+                  checked={curr.videos.some(
+                    (element) =>
+                      element._id === state.playlistModalState.video._id
+                  )}
+                  onChange={(event) =>
+                    event.target.checked
+                      ? token &&
+                        addToPlaylist(
+                          dispatch,
+                          token,
+                          curr._id,
+                          state.playlistModalState.video
+                        )
+                      : token &&
+                        removeFromPlaylist(
+                          dispatch,
+                          token,
+                          curr._id,
+                          state.playlistModalState.video._id
+                        )
+                  }
+                />
+                {curr.title}
+              </label>
+            ))}
           <div className="modal-body-creater">
             <label>Name:</label>
             <input

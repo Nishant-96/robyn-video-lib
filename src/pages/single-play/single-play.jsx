@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import ShareIcon from "@mui/icons-material/Share";
@@ -25,30 +25,42 @@ export function SinglePlay() {
   const [video, setVideo] = useState({});
   const { token } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const { state, dispatch } = useData();
 
   const inWatchLater = state.watchLater.find((curr) => curr._id === video._id);
   const inLiked = state.likedVideos.find((curr) => curr._id === video._id);
 
   function playlistClickHandler() {
-    dispatch({
-      type: "PLAYLIST_MODAL",
-      payload: { value: true, video: video },
-    });
+    token
+      ? dispatch({
+          type: "PLAYLIST_MODAL",
+          payload: { value: true, video: video },
+        })
+      : navigate("/login", {
+          replace: true,
+          state: { from: location },
+        });
   }
   function likeHandler() {
     token
       ? !!inLiked
         ? removeFromLiked(dispatch, token, video._id)
         : addToLiked(dispatch, token, video)
-      : navigate("/login");
+      : navigate("/login", {
+          replace: true,
+          state: { from: location },
+        });
   }
   function watchLaterClickHandler() {
     token
       ? !!inWatchLater
         ? removeFromWatchLater(dispatch, token, video._id)
         : addToWatchLater(dispatch, token, video)
-      : navigate("/login");
+      : navigate("/login", {
+          replace: true,
+          state: { from: location },
+        });
   }
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useData } from "../../context/data-context";
 import {
   addToHistory,
@@ -16,15 +16,21 @@ export function ExploreCard({ videos }) {
   const { state, dispatch } = useData();
   const { token } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const inWatchLater = state.watchLater.find((curr) => curr._id === videos._id);
 
   const inHistory = state.historyVideos.find((curr) => curr._id === videos._id);
 
   function playlistClickHandler() {
-    dispatch({
-      type: "PLAYLIST_MODAL",
-      payload: { value: true, video: videos },
-    });
+    token
+      ? dispatch({
+          type: "PLAYLIST_MODAL",
+          payload: { value: true, video: videos },
+        })
+      : navigate("/login", {
+          replace: true,
+          state: { from: location },
+        });
   }
   function historyClickHandler() {
     navigate(`/singleplay/${videos._id}`);
@@ -35,7 +41,10 @@ export function ExploreCard({ videos }) {
       ? !!inWatchLater
         ? removeFromWatchLater(dispatch, token, videos._id)
         : addToWatchLater(dispatch, token, videos)
-      : navigate("/login");
+      : navigate("/login", {
+          replace: true,
+          state: { from: location },
+        });
   }
 
   return (
